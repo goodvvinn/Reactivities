@@ -10,10 +10,10 @@ import { Link } from "react-router-dom";
 
 export default observer(function ActivityForm() {
     const history = useHistory();
-    const {activityStore} = useStore();
-    const {createActivity, updateActivity, loading, loadActivity, loadingInitial } = activityStore;
-    const {id} = useParams<{id: string}>()
-    const[activity, setActivity] = useState({
+    const { activityStore } = useStore();
+    const { createActivity, updateActivity, loading, loadActivity, loadingInitial } = activityStore;
+    const { id } = useParams<{ id: string }>()
+    const [activity, setActivity] = useState({
         id: '',
         title: '',
         category: '',
@@ -23,39 +23,39 @@ export default observer(function ActivityForm() {
         venue: '',
     });
 
-    useEffect(() =>{
+    useEffect(() => {
         if (id) loadActivity(id).then(activity => setActivity(activity!))
     }, [id, loadActivity]);
 
-    function handleSubmit(){
-        if (activity.id.length ===0) {
+    function handleSubmit() {
+        if (activity.id.length === 0) {
             let newActivity = {
                 ...activity,
                 id: uuid(),
             };
             createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`))
-        } else{
+        } else {
             updateActivity(activity).then(() => history.push(`/activities/${activity.id}`))
         }
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
-            const {name, value} = event.target;
-            setActivity({...activity, [name]: value})
+        const { name, value } = event.target;
+        setActivity({ ...activity, [name]: value })
     }
 
-    if (loadingInitial) return <LoadingComponent content= 'Loading activity...'/>
+    if (loadingInitial) return <LoadingComponent content='Loading activity...' />
 
 
-    return(
+    return (
         <Segment clearing>
             <Form onSubmit={handleSubmit} >
-                <Form.Input placeholder="Title" value= {activity.title} name='title' onChange= {handleInputChange} />
-                <Form.TextArea placeholder="Description" value= {activity.description} name='description' onChange= {handleInputChange} />
-                <Form.Input placeholder="Category" value= {activity.category} name='category' onChange= {handleInputChange} />
-                <Form.Input type='date'placeholder="Date" value= {activity.date} name='date' onChange= {handleInputChange} />
-                <Form.Input placeholder="City" value= {activity.city} name='city' onChange= {handleInputChange} />
-                <Form.Input placeholder="Venue" value= {activity.venue} name='venue' onChange= {handleInputChange} />
+                <Form.Input placeholder="Title" value={activity.title} name='title' onChange={handleInputChange} />
+                <Form.TextArea placeholder="Description" value={activity.description} name='description' onChange={handleInputChange} />
+                <Form.Input placeholder="Category" value={activity.category} name='category' onChange={handleInputChange} />
+                <Form.Input type='date' placeholder="Date" value={activity.date} name='date' onChange={handleInputChange} />
+                <Form.Input placeholder="City" value={activity.city} name='city' onChange={handleInputChange} />
+                <Form.Input placeholder="Venue" value={activity.venue} name='venue' onChange={handleInputChange} />
                 <Button loading={loading} floated='right' positive type='submit' content='Submit' />
                 <Button as={Link} to='/activities' floated='right' type='button' content='Cancel' />
             </Form>

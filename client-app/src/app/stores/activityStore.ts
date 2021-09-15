@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction} from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agents";
 import { Activity } from "../models/activity";
 
@@ -14,17 +14,17 @@ export default class ActivityStore {
         makeAutoObservable(this)
     }
 
-    get activitiesByDate(){
+    get activitiesByDate() {
         return Array.from(this.activityRegistry.values()).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
     }
 
-    get groupedActivities(){
+    get groupedActivities() {
         return Object.entries(
             this.activitiesByDate.reduce((activities, activity) => {
                 const date = activity.date;
                 activities[date] = activities[date] ? [...activities[date], activity] : [activity];
                 return activities;
-            }, {} as {[key: string]: Activity[]})
+            }, {} as { [key: string]: Activity[] })
         )
     }
     loadActivities = async () => {
@@ -52,7 +52,7 @@ export default class ActivityStore {
             this.selectedActivity = activity;
             return activity;
         }
-        else{
+        else {
             this.loadingInitial = true;
             try {
                 activity = await agent.Activities.details(id);
@@ -65,7 +65,7 @@ export default class ActivityStore {
             } catch (error) {
                 console.log(error);
                 runInAction(() => {
-                this.setLoadingInitial(false);
+                    this.setLoadingInitial(false);
                 })
             }
         }
@@ -73,7 +73,7 @@ export default class ActivityStore {
 
     private setActivity = (activity: Activity) => {
         activity.date = activity.date.split('T')[0];
-                    this.activityRegistry.set(activity.id, activity);
+        this.activityRegistry.set(activity.id, activity);
     }
 
     private getActivity = (id: string) => {
@@ -100,7 +100,7 @@ export default class ActivityStore {
             })
         }
     }
-    updateActivity = async (activity : Activity) => {
+    updateActivity = async (activity: Activity) => {
         this.loading = true;
         try {
             await agent.Activities.update(activity);
