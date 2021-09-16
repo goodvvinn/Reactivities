@@ -3,28 +3,30 @@ namespace Application.Activities
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Application.Core;
     using Domain;
     using MediatR;
     using Persistance;
     public class Detalis
     {
-        public class Query : IRequest<Activity>
+        public class Query : IRequest<Result<Activity>>
         {
         public Guid Id { get; set; }
         }
 
-        public class Hand : IRequestHandler<Query, Activity>
+        public class Handler : IRequestHandler<Query, Result<Activity>>
         {
             private readonly DataContext _context;
 
-            public Hand(DataContext context)
+            public Handler(DataContext context)
             {
                 this._context = context;
             }
 
-            public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await this._context.Activities.FindAsync(request.Id);
+                var activity = await _context.Activities.FindAsync(request.Id);
+                return Result<Activity>.Success(activity);
             }
         }
     }

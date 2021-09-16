@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Colorful.Console" Version="1.2.15" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
     <PackageReference Include="GitVersion.CommandLine" Version="5.7.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
