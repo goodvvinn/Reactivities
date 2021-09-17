@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
-import NotFound from "../../features/errors/NotFound";
 import { Activity } from "../models/activity";
 import { store } from "../stores/store";
 
