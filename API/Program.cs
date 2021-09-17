@@ -38,7 +38,5 @@ namespace API
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
-        private string GetDebuggerDisplay() => ToString();
-    }
+     }
 }
