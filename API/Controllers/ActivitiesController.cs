@@ -1,10 +1,10 @@
 namespace Reactivities.API.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Application.Activities;
     using Domain;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class ActivitiesController : BaseApiController
@@ -14,7 +14,7 @@ namespace Reactivities.API.Controllers
         {
             return HandleResult(await Mediator.Send(new List.Query()));
         }
-
+        
         [HttpGet("{id}")] // activities/id
         public async Task<IActionResult> GetActivity(Guid id)
         {
