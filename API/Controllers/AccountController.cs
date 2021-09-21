@@ -35,17 +35,17 @@ namespace API.Controllers
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized("Email is not valid.");
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
             if (result.Succeeded)
             {
-                CreateUserObject(user);
+                return CreateUserObject(user);
             }
             
-            return Unauthorized();
+            return Unauthorized("Password is incorrect.");
         }
 
         [HttpPost("register")]

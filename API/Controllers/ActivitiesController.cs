@@ -7,6 +7,7 @@ namespace Reactivities.API.Controllers
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [AllowAnonymous]
     public class ActivitiesController : BaseApiController
     {
         [HttpGet]
