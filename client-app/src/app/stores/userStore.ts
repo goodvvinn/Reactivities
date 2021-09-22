@@ -32,9 +32,9 @@ export default class UserStore{
 
     logout = () => {
         store.commonStore.setToken(null);
-        window.localStorage.removeItem('jwt')
+        window.localStorage.removeItem('jwt');
         this.user = null;
-        history.push('/')
+        history.push('/');
     }
 
     getUser = async () => {
@@ -54,7 +54,7 @@ export default class UserStore{
             history.push('/activities')
             store.modalStore.closeModal();
             console.log(user);
-        } catch (error) {
+        }catch (error) {
             console.log('Error occurred while trying to register ' + error);;
             throw error;
         }
