@@ -1,4 +1,4 @@
-namespace Persistance
+namespace Persistence
 {
     using Domain;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

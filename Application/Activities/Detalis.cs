@@ -9,7 +9,7 @@ namespace Application.Activities
     using Domain;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using Persistance;
+    using Persistence;
     public class Detalis
     {
         public class Query : IRequest<Result<ActivityDto>>

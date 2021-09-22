@@ -1,4 +1,4 @@
-﻿namespace Persistance.Migrations
+﻿namespace Persistence.Migrations
 {
     using Microsoft.EntityFrameworkCore.Migrations;
 

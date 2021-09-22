@@ -9,7 +9,7 @@ namespace Application.Activities
     using Domain;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using Persistance;
+    using Persistence;
     public class List
     {
         public class Query : IRequest<Result<List<ActivityDto>>>

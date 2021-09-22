@@ -8,7 +8,7 @@ namespace Application.Activities
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc.Filters;
-    using Persistance;
+    using Persistence;
 
     public class Delete
     {

@@ -7,7 +7,7 @@ namespace Application.Activities
     using Domain;
     using FluentValidation;
     using MediatR;
-    using Persistance;
+    using Persistence;
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>

@@ -10,7 +10,7 @@ namespace API.Extensions
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
-    using Persistance;
+    using Persistence;
 
     public static class IdentityServiceExtensions
     {

@@ -9,7 +9,7 @@ namespace Application.Activities
     using FluentValidation;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
-    using Persistance;
+    using Persistence;
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
