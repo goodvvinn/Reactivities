@@ -1,9 +1,7 @@
 namespace Application.Activities
 {
     using System;
-    using System.Diagnostics;
     using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Core;
@@ -68,6 +66,7 @@ namespace Application.Activities
                         Activity = activity,
                         IsHost = false
                     };
+                    activity.Attendees.Add(attendance);
                 }
 
                 var result = await _context.SaveChangesAsync() > 0;
