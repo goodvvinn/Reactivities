@@ -9,12 +9,18 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Activity, Activity>();
+
             CreateMap<Activity, ActivityDto>()
             .ForMember(h => h.HostUsername, o => o.MapFrom(s => s.Attendees.FirstOrDefault(x => x.IsHost).AppUser.UserName));
-            CreateMap<ActivityAttendee, Profiles.Profile>()
+
+            CreateMap<ActivityAttendee, AttendeeDto>()
             .ForMember(h => h.DisplayName, o => o.MapFrom(s => s.AppUser.DisplayName))
             .ForMember(h => h.Username, o => o.MapFrom(s => s.AppUser.UserName))
-            .ForMember(h => h.Bio, o => o.MapFrom(s => s.AppUser.Bio));
+            .ForMember(h => h.Bio, o => o.MapFrom(s => s.AppUser.Bio))
+            .ForMember(h => h.Image, o => o.MapFrom(s => s.AppUser.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            CreateMap<AppUser, Profiles.Profile>()
+            .ForMember(h => h.Image, o => o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain).Url));
         }
     }
 }

@@ -9,7 +9,7 @@ export default observer(function HomePage() {
     const { userStore, modalStore } = useStore();
     return (
         <Segment inverted textaligin='center' vertical className="masthead">
-            <Container text >
+            <Container text>
                 <Header as='h1' inverted>
                     <Image size='massive' src='/assets/logo.png' style={{ marginBottom: 12 }} />
                     Reactivities

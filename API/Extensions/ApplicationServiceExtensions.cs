@@ -3,6 +3,7 @@ namespace API.Extensions
     using Application.Activities;
     using Application.Core;
     using Application.Interfaces;
+    using Infrastructure.Photos;
     using Infrastructure.Security;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
@@ -14,29 +15,30 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-           services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+            services.AddSwaggerGen(c =>
+             {
+                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+             });
 
-           services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddDbContext<DataContext>(opt =>
+             {
+                 opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+             });
 
-           services.AddCors(opt =>
-            {
-                    opt.AddPolicy("CorsPolicy", policy =>
-                    {
-                        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
-                    });
-            });
+            services.AddCors(opt =>
+             {
+                 opt.AddPolicy("CorsPolicy", policy =>
+                {
+                         policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                     });
+             });
 
-           services.AddMediatR(typeof(List.Handler).Assembly);
-           services.AddAutoMapper(typeof(MappingProfiles).Assembly);
-           services.AddScoped<IUserAccessor, UserAccessor>();
-           
-           return services;
+            services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
+            return services;
         }
     }
 }
