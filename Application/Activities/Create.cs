@@ -38,7 +38,7 @@ namespace Application.Activities
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(user => user.UserName == _userAccessor.GetUserName());
+                var user = await _context.Users.FirstOrDefaultAsync(user => user.UserName == _userAccessor.GetUsername());
                 var attendee = new ActivityAttendee
                 {
                     AppUser = user,

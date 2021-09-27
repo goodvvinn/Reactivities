@@ -173,7 +173,7 @@ export default class ActivityStore {
             await agent.Activities.attend(this.selectedActivity!.id);
             runInAction(() => {
                 this.selectedActivity!.isCancelled = !this.selectedActivity?.isCancelled;
-                this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!)
+                this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
             })
 
         } catch (error) {
