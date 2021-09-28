@@ -1,5 +1,6 @@
 namespace API.Extensions
 {
+    using API.SignalIR;
     using Application.Activities;
     using Application.Core;
     using Application.Interfaces;
@@ -29,7 +30,11 @@ namespace API.Extensions
              {
                  opt.AddPolicy("CorsPolicy", policy =>
                 {
-                         policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                         policy
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials()
+                            .WithOrigins("http://localhost:3000");
                      });
              });
 
@@ -38,6 +43,8 @@ namespace API.Extensions
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
+            services.AddSignalR();
+            
             return services;
         }
     }

@@ -16,20 +16,27 @@ namespace Persistence
 
         public DbSet<Photo> Photos { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new { aa.AppUserId, aa.ActivityId }));
             
             builder.Entity<ActivityAttendee>()
-            .HasOne(h => h.AppUser)
-            .WithMany(w => w.Activities)
-            .HasForeignKey(aa => aa.AppUserId);
+                .HasOne(h => h.AppUser)
+                .WithMany(w => w.Activities)
+                .HasForeignKey(aa => aa.AppUserId);
 
             builder.Entity<ActivityAttendee>()
-            .HasOne(h => h.Activity)
-            .WithMany(w => w.Attendees)
-            .HasForeignKey(aa => aa.ActivityId);
+                .HasOne(h => h.Activity)
+                .WithMany(w => w.Attendees)
+                .HasForeignKey(aa => aa.ActivityId);
+
+            builder.Entity<Comment>()
+                .HasOne(a => a.Activity)
+                .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

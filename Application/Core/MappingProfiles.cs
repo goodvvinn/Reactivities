@@ -2,6 +2,7 @@ namespace Application.Core
 {
     using System.Linq;
     using Application.Activities;
+    using Application.Comments;
     using AutoMapper;
     using Domain;
     public class MappingProfiles : Profile
@@ -21,6 +22,11 @@ namespace Application.Core
 
             CreateMap<AppUser, Profiles.Profile>()
             .ForMember(h => h.Image, o => o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            CreateMap<Comment, CommentDto>()
+            .ForMember(h => h.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
+            .ForMember(h => h.Username, o => o.MapFrom(s => s.Author.UserName))
+            .ForMember(h => h.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(x => x.IsMain).Url));
         }
     }
 }
