@@ -19,7 +19,7 @@ import { v4 as uuid } from 'uuid'
 export default observer(function ActivityForm() {
     const history = useHistory();
     const { activityStore } = useStore();
-    const { createActivity, updateActivity, loadActivity, loadingInitial } = activityStore;
+    const { createActivity, updateActivity, loadActivity, loadingInitial, loading} = activityStore;
     const { id } = useParams<{ id: string }>()
     const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
 
@@ -79,7 +79,13 @@ export default observer(function ActivityForm() {
                         floated='right'
                         positive type='submit'
                         content='Submit' />
-                        <Button as={Link} to='/activities' floated='right' type='button' content='Cancel' />
+                        <Button
+                        as={Link} 
+                        to='/activities' 
+                        floated='right' 
+                        type='button'
+                         content='Cancel' 
+                         />
                     </Form>
                 )}
             </Formik>

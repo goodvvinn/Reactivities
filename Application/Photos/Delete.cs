@@ -5,9 +5,7 @@ namespace Application.Photos
     using System.Threading.Tasks;
     using Application.Core;
     using Application.Interfaces;
-    using Colorful;
     using MediatR;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Persistence;
 
