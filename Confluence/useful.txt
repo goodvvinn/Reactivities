@@ -1,0 +1,1 @@
+dotnet ef migrations script -o test1.sql -p .\Persistence\ -s .\API\ - morgations script for building phisical db model.

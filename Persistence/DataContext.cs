@@ -39,6 +39,7 @@ namespace Persistence
                 .HasOne(a => a.Activity)
                 .WithMany(c => c.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
+                
             builder.Entity<UserFollowing>(b =>
             {
                 b.HasKey(k => new { k.ObserverId, k.TargetId });
