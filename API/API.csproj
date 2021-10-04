@@ -5,9 +5,9 @@
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="../Application/Application.csproj" />
-		<ProjectReference Include="../Domain/Domain.csproj" />
-		<AdditionalFiles Include="../stylecop.json" />
+		<ProjectReference Include="..\Application\Application.csproj" />
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<AdditionalFiles Include="..\stylecop.json" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Colorful.Console" Version="1.2.15" />
