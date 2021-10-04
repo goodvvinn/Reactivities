@@ -1,7 +1,6 @@
 namespace API.Extensions
 {
     using System;
-    using API.SignalIR;
     using Application.Activities;
     using Application.Core;
     using Application.Interfaces;
@@ -53,9 +52,7 @@ namespace API.Extensions
 
                     connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb}; SSL Mode=Require; Trust Server Certificate=true";
                 }
-
-                // Whether the connection string came from the local development configuration file
-                // or from the environment variable from Heroku, use it to set up your DbContext.
+                              
                 options.UseNpgsql(connStr);
             });
 
