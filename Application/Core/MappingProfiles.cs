@@ -3,9 +3,9 @@ namespace Application.Core
     using System.Linq;
     using Application.Activities;
     using Application.Comments;
-    using Application.Profiles;
+    using AutoMapper;
     using Domain;
-    public class MappingProfiles : AutoMapper.Profile
+    public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
@@ -34,13 +34,6 @@ namespace Application.Core
             .ForMember(h => h.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
             .ForMember(h => h.Username, o => o.MapFrom(s => s.Author.UserName))
             .ForMember(h => h.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(x => x.IsMain).Url));
-
-            CreateMap<ActivityAttendee, UserActivityDto>()
-            .ForMember(d => d.Id, o => o.MapFrom(s => s.Activity.Id))
-            .ForMember(d => d.Date, o => o.MapFrom(s => s.Activity.Date))
-            .ForMember(d => d.Title, o => o.MapFrom(s => s.Activity.Title))
-            .ForMember(d => d.Category, o => o.MapFrom(s => s.Activity.Category))
-            .ForMember(d => d.HostUsername, o => o.MapFrom(s => s.Activity.Attendees.FirstOrDefault(h => h.IsHost).AppUser.UserName));
         }
     }
 }
