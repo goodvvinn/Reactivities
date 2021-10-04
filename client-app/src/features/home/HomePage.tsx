@@ -8,16 +8,16 @@ import RegisterForm from "../users/RegisterForm";
 export default observer(function HomePage() {
     const { userStore, modalStore } = useStore();
     return (
-        <Segment inverted textaligin='center' vertical className="masthead">
+        <Segment inverted vertical className="masthead">
             <Container text>
-                <Header as='h1' inverted>
+                <Header as='h1' inverted textAlign='center'>
                     <Image size='massive' src='/assets/logo.png' style={{ marginBottom: 12 }} />
                     Reactivities
-                </Header>
+                </Header >
                 {userStore.isLoggedIn ? (
                     <>
-                        <Header as='h2' inverted content='Welcome to Reactivities!' />
-                        <Button as={Link} to='/activities' size='huge' inverted>
+                        <Header as='h2' textAlign='center' inverted content='Welcome to Reactivities!' />
+                        <Button textAlign='center' as={Link} to='/activities' size='huge' inverted>
                             Go to Activities!!!
                         </Button>
                     </>

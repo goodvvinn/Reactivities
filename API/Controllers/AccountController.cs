@@ -79,7 +79,7 @@ namespace API.Controllers
                 return CreateUserObject(user);
             }
 
-            return BadRequest("Problem registring user.");
+            return BadRequest("Problem registering user.");
         }
 
         [Authorize]

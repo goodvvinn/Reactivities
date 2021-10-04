@@ -1,3 +1,6 @@
 {
-    "tabnine.receiveBetaChannelUpdates": true
+    "tabnine.receiveBetaChannelUpdates": true,
+    "cSpell.words": [
+        "Npgsql"
+    ]
 }
