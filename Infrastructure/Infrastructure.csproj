@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.15.2" />
-    <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
   </ItemGroup>
 
   <PropertyGroup>
