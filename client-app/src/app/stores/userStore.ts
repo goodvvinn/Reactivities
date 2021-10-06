@@ -70,4 +70,10 @@ export default class UserStore{
             this.user.displayName = name;
         }
     }
+
+    facebookLogin = () => {
+        window.FB.login(response => {
+            console.log(response);
+        }, {scope: 'public_profile, email'})
+    }
 }
