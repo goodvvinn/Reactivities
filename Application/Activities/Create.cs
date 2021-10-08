@@ -1,6 +1,5 @@
 namespace Application.Activities
 {
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Core;

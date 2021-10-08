@@ -4,6 +4,7 @@ namespace API.Extensions
     using Application.Activities;
     using Application.Core;
     using Application.Interfaces;
+    using Infrastructure.Email;
     using Infrastructure.Photos;
     using Infrastructure.Security;
     using MediatR;
@@ -12,6 +13,7 @@ namespace API.Extensions
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
     using Persistence;
+
     public static class ApplicationServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
@@ -75,6 +77,7 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.AddScoped<EmailSender>();
             services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
             services.AddSignalR();
             

@@ -169,6 +169,7 @@ export default class ActivityStore {
 
             runInAction(() => {
                 this.selectedActivity = newActivity;
+                this.loading = false;
             })
         } catch (error) {
             console.log(error);

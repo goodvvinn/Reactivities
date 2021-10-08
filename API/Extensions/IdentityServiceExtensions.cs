@@ -21,10 +21,12 @@ namespace API.Extensions
             services.AddIdentityCore<AppUser>(options =>
             {
                 options.Password.RequireNonAlphanumeric = false;
+                options.SignIn.RequireConfirmedEmail = true;
             })
 
             .AddEntityFrameworkStores<DataContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
+            .AddSignInManager<SignInManager<AppUser>>()
+            .AddDefaultTokenProviders();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
