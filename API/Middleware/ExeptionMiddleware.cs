@@ -9,12 +9,12 @@ namespace API.Middleware
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
 
-    public class ExeptionMiddleware
+    public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExeptionMiddleware> _logger;
+        private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _env;
-        public ExeptionMiddleware(RequestDelegate next, ILogger<ExeptionMiddleware> logger, IHostEnvironment env)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
         {
             _next = next;
             _logger = logger;
@@ -34,8 +34,8 @@ namespace API.Middleware
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = _env.IsDevelopment()
-                ? new AppExeption(context.Response.StatusCode, ex.Message, ex.StackTrace.ToString())
-                : new AppExeption(context.Response.StatusCode, "Server error");
+                ? new AppException(context.Response.StatusCode, ex.Message, ex.StackTrace.ToString())
+                : new AppException(context.Response.StatusCode, "Server error");
 
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response, options);
