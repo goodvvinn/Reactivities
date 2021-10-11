@@ -4,21 +4,21 @@ import { User, UserFormValues } from "../models/user";
 import { store } from "./store";
 import { history } from "../..";
 
-export default class UserStore{
+export default class UserStore {
     user: User | null = null;
     fbAccessToken: string | null = null;
     fbLoading = false;
     refreshTokenTimeout: any;
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this)
     }
 
-    get isLoggedIn(){
+    get isLoggedIn() {
         // console.log("user is already logged in")
         return !!this.user;
     }
-    
+
     login = async (creds: UserFormValues) => {
         try {
             const user = await agent.Account.login(creds);
@@ -42,11 +42,11 @@ export default class UserStore{
     }
 
     getUser = async () => {
-        try{
-        const user = await agent.Account.current();
-        runInAction(() => this.user = user);
-        this.startRefreshTokenTimer(user);
-        } catch(error) {
+        try {
+            const user = await agent.Account.current();
+            runInAction(() => this.user = user);
+            this.startRefreshTokenTimer(user);
+        } catch (error) {
             console.log(error);
         }
     }
@@ -56,7 +56,7 @@ export default class UserStore{
             await agent.Account.register(creds);
             history.push(`/account/registerSuccess?email=${creds.email}`)
             store.modalStore.closeModal();
-        }catch (error) {
+        } catch (error) {
             console.log('Error occurred while trying to register ' + error);;
             throw error;
         }
@@ -74,8 +74,8 @@ export default class UserStore{
     }
 
     getFacebookLoginStatus = async () => {
-        window.FB.getLoginStatus(response => {  
-            if (response.status === 'connected') {
+        window.FB.getLoginStatus(response => {
+            if (response?.status === 'connected') {
                 this.fbAccessToken = response.authResponse.accessToken;
             }
         })
@@ -100,10 +100,10 @@ export default class UserStore{
 
         if (this.fbAccessToken) {
             apiLogin(this.fbAccessToken);
-        }else{
+        } else {
             window.FB.login(response => {
                 apiLogin(response.authResponse.accessToken);
-            }, {scope: 'public_profile, email'})
+            }, { scope: 'public_profile, email' })
         }
     }
 
@@ -117,9 +117,9 @@ export default class UserStore{
         } catch (error) {
             console.log(error);
         }
-    } 
+    }
 
-    private startRefreshTokenTimer(user: User){
+    private startRefreshTokenTimer(user: User) {
         const jwtToken = JSON.parse(atob(user.token.split('.')[1]));
         const expires = new Date(jwtToken.exp * 1000);
         const timeout = expires.getTime() - Date.now() - (60 * 1000);
