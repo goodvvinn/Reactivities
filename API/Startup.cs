@@ -73,7 +73,9 @@ namespace API
                 "sha256-UGmU/l9u6P133spP/KgqcB6Pm5dMtQEjQQTiEFHTBwI=",
                 "sha256-XLatyrD8FSnQscwPOA7OqbdOvn/5wBPSdYagu9mn2UI="))
                 .FrameSources(f => f.Self()
-                .CustomSources("https://facebook.com")));
+                .CustomSources(
+                "https://facebook.com",
+                "https://platform-lookaside.fbsbx.com")));
 
             if (env.IsDevelopment())
             {

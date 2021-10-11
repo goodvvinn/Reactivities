@@ -46,7 +46,7 @@ namespace API.Controllers
             this._emailSender = emailSender;
             this._httpClient = new HttpClient
             {
-                BaseAddress = new System.Uri("https://graph.facebook.com")
+                BaseAddress = new Uri("https://graph.facebook.com")
             };
         }
 

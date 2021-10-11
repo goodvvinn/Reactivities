@@ -74,7 +74,7 @@ export default class UserStore{
     }
 
     getFacebookLoginStatus = async () => {
-        window.FB.getLoginStatus(response => {
+        window.FB.getLoginStatus(response => {  
             if (response.status === 'connected') {
                 this.fbAccessToken = response.authResponse.accessToken;
             }
