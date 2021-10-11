@@ -41,7 +41,7 @@ namespace Application.Activities
                 }
 
                 var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
-                
+
                 if (user == null)
                 {
                     return null;
@@ -56,7 +56,7 @@ namespace Application.Activities
 
                 if (attendance != null || hostUsername != user.UserName)
                 {
-                    activity.Attendees.Remove(attendance);
+                    // activity.Attendees.Remove(attendance);
                 }
 
                 if (attendance == null)

@@ -1,8 +1,11 @@
 namespace Persistence
 {
+    using System;
     using Domain;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+
     public class DataContext : IdentityDbContext<AppUser>
     {
         public DataContext(DbContextOptions options)
@@ -19,6 +22,11 @@ namespace Persistence
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<UserFollowing> UserFollowings { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // optionsBuilder.EnableSensitiveDataLogging().LogTo(Console.WriteLine, LogLevel.Information);
+        }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
