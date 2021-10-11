@@ -71,7 +71,9 @@ namespace API
                 "https://connect.facebook.net",
                 "https://facebook.com",
                 "sha256-UGmU/l9u6P133spP/KgqcB6Pm5dMtQEjQQTiEFHTBwI=",
-                "sha256-XLatyrD8FSnQscwPOA7OqbdOvn/5wBPSdYagu9mn2UI=")));
+                "sha256-XLatyrD8FSnQscwPOA7OqbdOvn/5wBPSdYagu9mn2UI="))
+                .FrameSources(f => f.Self()
+                .CustomSources("https://facebook.com")));
 
             if (env.IsDevelopment())
             {
